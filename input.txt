@@ -1,0 +1,40 @@
+classDiagram
+    class Book {
+        -int bookId
+        -string title
+        -string author
+        -string ISBN
+        +getBookInfo()
+    }
+
+    class User {
+        -int userId
+        -string name
+        -string email
+        +getUserInfo()
+    }
+
+    class Library {
+        -int libraryId
+        -string address
+        -List books
+        -List users
+        +addBook(Book)
+        +removeBook(Book)
+        +registerUser(User)
+        +unregisterUser(User)
+    }
+
+    class Loan {
+        -int loanId
+        -int bookId
+        -int userId
+        -date loanDate
+        -date dueDate
+        +getLoanDetails()
+    }
+
+    Book "1" <-- "many" Loan : contains
+    User "1" <-- "many" Loan : requests
+    Library "1" <-- "*" Book : stocks
+    Library "1" <-- "*" User : registers
